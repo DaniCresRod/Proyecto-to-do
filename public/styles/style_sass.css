@@ -1,3 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;0,600;1,100;1,600&display=swap");
+* {
+  margin: 0;
+  font-family: "Kanit", sans-serif;
+  min-width: 250px;
+}
 
+body {
+  border: 1px solid black;
+  width: 95vw;
+  background: cadetblue;
+  margin: 0 auto;
+  min-width: 250px;
+  overflow: visible;
+}
+body nav {
+  width: 85vw;
+  max-height: 7vh;
+  position: fixed;
+  top: 0;
+  left: 7.5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: antiquewhite;
+  border-radius: 0 0 15px 15px;
+}
+body nav h1 {
+  margin: 2vh 5vw;
+}
+body nav ul {
+  list-style: none;
+  margin-right: 5vw;
+}
+body nav ul li {
+  cursor: pointer;
+}
+body main {
+  border: 1px solid black;
+  margin: 7.5vh auto 0;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 15px;
+  background: antiquewhite;
+}
+body #new_task {
+  border: 1px solid black;
+  position: absolute;
+  top: 10vh;
+  z-index: 2;
+  height: fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  max-width: 500px;
+  background-color: cadetblue;
+  border-radius: 15px;
+}
+body #new_task form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  row-gap: 1.5vh;
+  margin: 3vh 2vw;
+  min-width: 250px;
+  color: white;
+}
+body #new_task form textarea {
+  resize: none;
+  padding: 1vh 1vw;
+  width: 35vw;
+  border-radius: 15px;
+  max-width: calc(500px - 2vw - 4vw);
+  border-style: inset;
+  border: 2px solid black;
+}
+body #new_task form input {
+  width: 36vw;
+  border-radius: 15px;
+  max-width: calc(500px - 4vw);
+}
+body #new_task form div {
+  border: 1px solid black;
+  display: flex;
+  align-items: baseline;
+  gap: 1vw;
+  width: fit-content;
+}
+body #new_task form div input {
+  min-width: auto;
+  width: auto;
+}
+body #new_task form div button {
+  display: flex;
+  min-width: auto;
+  width: 50%;
+  border-radius: 5px;
+}
+
+.invisible {
+  display: none;
+}
 
 /*# sourceMappingURL=style_sass.css.map */

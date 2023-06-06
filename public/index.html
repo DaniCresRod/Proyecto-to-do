@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/style_sass.css">
     <link rel="shortcut icon" href="" type="image/x-icon">
 
     <script src="scripts/script_main.js" defer></script>
@@ -14,10 +14,36 @@
 </head>
 <body>
     <nav>
+        <h1>TODO</h1>
+        <ul>
+            <li>New</li>
 
+        </ul>
     </nav>
     <main>
+       <section id="new_task" class="invisible">
+        <form>
+            
+            <label for="new_task__input_title">Title:</label>
+            <input type="text" id="new_task__input_title">
+            
+            <label for="new_task__input_category">Category:</label>
+            <input type="text" id="new_task__input_category">
         
+            <label for="new_task__input_task">Task:</label>
+            <textarea type="text" id="new_task__input_task" rows="5"></textarea>
+           
+            <div>
+                <input type="checkbox" id="new_task__task_done">
+                <label for="new_task__task_done">Done!</label>
+            </div>
+            <div id="new_task_btns">
+                <button type="button" id="new_task_btns__btnSave">Save</button>
+                <button type="reset" id="new_task_btns__btnCancel">Cancel</button>
+            </div>
+        </form>
+
+       </section>
     </main>
     
 </body>
