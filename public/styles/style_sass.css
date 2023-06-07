@@ -6,19 +6,20 @@
 }
 
 body {
-  border: 1px solid black;
   width: 95vw;
   background: cadetblue;
   margin: 0 auto;
   min-width: 250px;
   overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 body nav {
   width: 85vw;
   max-height: 7vh;
   position: fixed;
   top: 0;
-  left: 7.5vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -27,19 +28,25 @@ body nav {
   border-radius: 0 0 15px 15px;
 }
 body nav h1 {
+  width: 50%;
   margin: 2vh 5vw;
+  min-width: auto;
 }
 body nav ul {
+  width: fit-content;
   list-style: none;
   margin-right: 5vw;
+  justify-self: right;
+  min-width: auto;
 }
 body nav ul li {
   cursor: pointer;
+  min-width: inherit;
 }
 body main {
   border: 1px solid black;
   margin: 7.5vh auto 0;
-  width: 90%;
+  width: 85vw;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -48,7 +55,7 @@ body main {
   background: antiquewhite;
 }
 body #new_task {
-  border: 1px solid black;
+  border: 2px solid black;
   position: absolute;
   top: 10vh;
   z-index: 2;
@@ -84,7 +91,6 @@ body #new_task form input {
   max-width: calc(500px - 4vw);
 }
 body #new_task form div {
-  border: 1px solid black;
   display: flex;
   align-items: baseline;
   gap: 1vw;
@@ -99,6 +105,51 @@ body #new_task form div button {
   min-width: auto;
   width: 50%;
   border-radius: 5px;
+}
+body #task_view {
+  margin: 1vh auto;
+}
+body #task_view article {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: first baseline;
+  flex-wrap: wrap;
+  width: 80vw;
+  padding: 0.5vh 1vw;
+  margin: 0 auto;
+  border-bottom: 2px solid black;
+}
+body #task_view article input[type=checkbox] {
+  max-width: fit-content;
+  min-width: 2vw;
+  height: 2vh;
+  width: 5vw;
+  margin: 0;
+  align-self: first baseline;
+}
+body #task_view article p {
+  border: 1px solid black;
+  min-width: 100px;
+  width: 15vw;
+  padding-left: 0.5vw;
+  overflow: hidden;
+}
+body #task_view article :last-child {
+  width: fit-content;
+}
+@media screen and (width < 756px) {
+  body #task_view article :last-child {
+    width: 80vw;
+    max-width: 80vw;
+  }
+}
+body #task_view > :hover {
+  border-radius: 5px;
+  background-color: aqua;
+}
+body #task_view > :last-child {
+  border-bottom: none;
 }
 
 .invisible {
