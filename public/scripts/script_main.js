@@ -25,6 +25,7 @@ if(localStorage.getItem('miTaskList')!==null){
 function refreshTaskView(){
     document.getElementById("task_view").innerHTML="";
     dataArray.forEach(x=>addTasksToDoc(x));
+    refreshContextMenuListener();
 }
 
 /* -Object Model-
@@ -95,10 +96,11 @@ function addTasksToDoc(oneTask){
 function refreshContextMenuListener(){
 
     document.querySelectorAll("#task_view article").forEach((x, index)=>{
-
-        x.addEventListener("contextmenu", (event)=>{
+           
+        x.addEventListener("click", (event)=>{
+            
             event.preventDefault();
-    
+
             document.getElementById("new_task").classList.toggle("invisible");
     
             input_doneText.checked=dataArray[index].done;
@@ -108,11 +110,8 @@ function refreshContextMenuListener(){
     
             btnSaveOption=index;
         });
-    
     });
 }
-
-
 
 function btnSaveAdd(whereToSaveIndataArray){
 
@@ -128,6 +127,7 @@ function btnSaveAdd(whereToSaveIndataArray){
             document.getElementById("new_task").classList.toggle("invisible");
             localStorage.setItem('miTaskList', JSON.stringify(dataArray));
             refreshTaskView();
+            refreshContextMenuListener();
         }
         else{window.alert(`${input_titleText.value} already exists`);}
     }
@@ -140,6 +140,46 @@ function clearNewTaskDialog(){
         input_categoryText.value="";
         input_taskText.value="";
 }
+/*
+function longClick(targetedItem){
+    let clickDown=0;
+    let clickUp=0;
+    let lcTolerance=600;
+    let IslongClick;
+
+    while(IslongClick===undefined){
+
+        targetedItem.addEventListener("mousedown", (event)=>{        
+
+            event.preventDefault();        
+    
+            clickDown=Date.now();
+            console.log("abajo");
+        
+            targetedItem.addEventListener("mouseup",(event)=>{
+    
+                event.preventDefault();
+    
+                clickUp=Date.now();
+                console.log("arriba");
+    
+                console.log(clickUp - clickDown);
+                console.log(lcTolerance);
+                console.log(clickUp-clickDown>=lcTolerance);
+    
+                if(clickUp-clickDown>=lcTolerance){
+                    return true;
+                }
+                else return false;
+                
+            });      
+    
+        }); 
+            
+    }     
+}*/
+
+
 
 
  
