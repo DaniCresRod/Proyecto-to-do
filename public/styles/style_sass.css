@@ -148,8 +148,21 @@ body #task_view > :hover {
   border-radius: 5px;
   background-color: aqua;
 }
-body #task_view > :last-child {
+body #task_view > article:nth-last-of-type(1) {
   border-bottom: none;
+}
+body .floating_bubble {
+  position: absolute;
+  z-index: 10;
+  width: fit-content;
+  min-width: auto;
+  padding: 1vh 2vw;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: cadetblue;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: white;
 }
 
 .invisible {

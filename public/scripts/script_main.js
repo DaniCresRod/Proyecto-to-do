@@ -92,8 +92,13 @@ function addTasksToDoc(oneTask){
     document.getElementById("task_view").appendChild(newTaskContainer);
 }
 
-
+//Refresh the whole page. Resets the listeners.
 function refreshContextMenuListener(){
+
+    try{
+        document.getElementById("bubbleTag").remove;
+    }
+    catch{}
 
     document.querySelectorAll("#task_view article").forEach((x, index)=>{
         
@@ -103,10 +108,10 @@ function refreshContextMenuListener(){
         let IsLongClick;
 
         if(window.innerWidth>780){
-            x.addEventListener("mousedown", (event)=>{        
+            x.addEventListener("mousedown", (event)=>{  
 
                 event.preventDefault();
-        
+
                 clickDown=Date.now();
             
                 x.addEventListener("mouseup",(event)=>{
@@ -117,66 +122,64 @@ function refreshContextMenuListener(){
         
                     if(clickUp-clickDown>=lcTolerance){
                         IsLongClick = true;
-    
-                        deleteTask(index);
+                        showDeleteTag(event.clientX, event.clientY, index);                       
                     }
                     else{
     
-                        document.getElementById("new_task").classList.toggle("invisible");
+                        //document.getElementById("new_task").classList.toggle("invisible");
         
+                        showTaskDetail(event.screenY);
+
                         input_doneText.checked=dataArray[index].done;
                         input_titleText.value=dataArray[index].title;
                         input_categoryText.value=dataArray[index].category;
                         input_taskText.value=dataArray[index].task;
                 
-                        btnSaveOption=index;
-    
+                        btnSaveOption=index;    
                     }                 
-                });      
-        
+                });            
             });
-
         }
         else{
 
-            x.addEventListener("touchstart", (event)=>{        
+            x.addEventListener("touchstart", (event)=>{                  
 
                 event.preventDefault();
         
                 clickDown=Date.now();
             
-                x.addEventListener("touchend",(event)=>{
+                x.addEventListener("touchend",(event2)=>{
         
-                    event.preventDefault();
+                    event2.preventDefault();
         
                     clickUp=Date.now();
         
                     if(clickUp-clickDown>=lcTolerance){
                         IsLongClick = true;
     
-                        deleteTask(index);
+                        showDeleteTag(event.touches[0].clientX, event.touches[0].clientY, index);
                     }
                     else{
     
-                        document.getElementById("new_task").classList.toggle("invisible");
+                        //document.getElementById("new_task").classList.toggle("invisible");
+
+                        showTaskDetail(event.touches[0].screenY);
         
                         input_doneText.checked=dataArray[index].done;
                         input_titleText.value=dataArray[index].title;
                         input_categoryText.value=dataArray[index].category;
                         input_taskText.value=dataArray[index].task;
                 
-                        btnSaveOption=index;
-    
+                        btnSaveOption=index;    
                     }                 
-                });      
-        
+                });  
             });
-
-        }       
-
+        }  
     });
+    checkboxEmancipation();
 }
 
+//Saves the added task on button hit
 function btnSaveAdd(whereToSaveIndataArray){
 
     if(input_titleText.value.trim().length > 0){
@@ -198,20 +201,118 @@ function btnSaveAdd(whereToSaveIndataArray){
     else{window.alert("Your task is meant to have a title at least");}
 }
 
+//Deletes the information setted in the form
 function clearNewTaskDialog(){
     input_doneText.checked=false;
-        input_titleText.value="";
-        input_categoryText.value="";
-        input_taskText.value="";
+    input_titleText.value="";
+    input_categoryText.value="";
+    input_taskText.value="";
 }
 
-function deleteTask(index){
+//Deletes task and gets it away from localStorage
+function deleteTask(index, bubbleTag){
     if(window.confirm(`This will delete the task "${dataArray[index].title}". Are you sure?`)){
-        dataArray.shift(index);
-        refreshTaskView();
+        
+        dataArray.splice(index,1);
+       
         //localStorage.setItem('miTaskList', JSON.stringify(dataArray));
     };
+    document.getElementById("task_view").removeChild(bubbleTag);
+    refreshTaskView();
 }
+
+//Shows a kind of Menu to delete a task
+function showDeleteTag(xPos, yPos, index){
+
+    let bubbleTag = document.createElement("p");
+
+    bubbleTag.setAttribute("id", "bubbleTag");
+    bubbleTag.textContent="Delete";
+    
+    bubbleTag.style.top=yPos-15+"px";
+    bubbleTag.style.left=xPos+"px";    
+
+    bubbleTag.classList.add("floating_bubble");   
+
+    document.getElementById("task_view").appendChild(bubbleTag);
+
+    bubbleTag.addEventListener("click", (event)=>{
+
+        if(event.target===bubbleTag){
+            deleteTask(index,bubbleTag);
+        }
+        else{
+            document.getElementById("task_view").removeChild(bubbleTag);
+        }        
+    });
+}
+
+//Avoids article (parent) eventListeners to be able to complete a task from the main layout (Desktop & mobile 780px break point)
+function checkboxEmancipation(){
+
+    document.querySelectorAll("#task_view input[type='checkbox']").forEach((x, index)=>{
+    
+        if(window.innerWidth>780){
+            console.log("cosas");
+            x.addEventListener("mousedown", function(event){               
+           
+                event.stopPropagation();  
+                
+                if(x.checked){
+                    dataArray[index].done=false;
+                    x.checked=false;
+                }
+                else{
+                    dataArray[index].done=true;
+                    x.checked=true;
+                } 
+        
+                localStorage.setItem('miTaskList', JSON.stringify(dataArray));
+                refreshTaskView();
+            });
+        }
+        else{
+            x.addEventListener("touchstart", function(event){               
+           
+                event.stopPropagation();  
+                
+                if(x.checked){
+                    dataArray[index].done=false;
+                    x.checked=false;
+                }
+                else{
+                    dataArray[index].done=true;
+                    x.checked=true;
+                } 
+        
+                localStorage.setItem('miTaskList', JSON.stringify(dataArray));
+                refreshTaskView();
+            });
+            x.addEventListener("touchend", function(event){               
+           
+                event.stopPropagation(); 
+                event.preventDefault(); 
+            });
+        }        
+    });
+}
+
+function showTaskDetail(screenHeight){
+
+    console.log(window.pageYOffset+10+"px");
+
+    document.getElementById("new_task").classList.toggle("invisible");
+    document.getElementById("new_task").style.top=window.pageYOffset+10+"px";
+
+    console.log(document.getElementById("new_task").style.top.value);
+
+   
+
+}
+
+
+
+
 
 
 

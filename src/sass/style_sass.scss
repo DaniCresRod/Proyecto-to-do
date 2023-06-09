@@ -179,8 +179,7 @@ body{
                     width:80vw;
                     max-width: 80vw;
                 }                
-            } 
-            
+            }             
         }
 
         >:hover{
@@ -188,9 +187,26 @@ body{
             background-color: $bg_color_hlight;
         }
         
-        >:last-child{
+        > article:nth-last-of-type(1){
             border-bottom:none;
         }
+    }
+
+    .floating_bubble{
+        position: absolute;
+        z-index: 10;
+        //top:340px;
+        width: fit-content;
+        min-width: auto;
+        padding: 1vh 2vw;
+        border: 2px solid black;
+
+        border-radius: 15px;
+        background-color: $bg_Color;
+
+        font-weight: bold;
+        text-transform: capitalize;
+        color: $font_color_2;
     }
 }
 
