@@ -122,7 +122,7 @@ function refreshContextMenuListener(){
         
                     if(clickUp-clickDown>=lcTolerance){
                         IsLongClick = true;
-                        showDeleteTag(event.clientX, event.clientY, index);                       
+                        showDeleteTag(event.clientX+scrollX, event.clientY+scrollY, index);                       
                     }
                     else{
     
@@ -157,7 +157,7 @@ function refreshContextMenuListener(){
                     if(clickUp-clickDown>=lcTolerance){
                         IsLongClick = true;
     
-                        showDeleteTag(event.touches[0].clientX, event.touches[0].clientY, index);
+                        showDeleteTag(event.touches[0].clientX+scrollX, event.touches[0].clientY+scrollY, index);
                     }
                     else{
     
@@ -235,6 +235,14 @@ function showDeleteTag(xPos, yPos, index){
     bubbleTag.classList.add("floating_bubble");   
 
     document.getElementById("task_view").appendChild(bubbleTag);
+/*
+    setTimeout(()=>{
+        if(typeof(document.getElementById("task_view").removeChild(bubbleTag))!=='undefined'){
+           // document.getElementById("task_view").removeChild(bubbleTag);
+            refreshTaskView();
+        }
+        
+        }, 2000);*/
 
     bubbleTag.addEventListener("click", (event)=>{
 
@@ -297,17 +305,10 @@ function checkboxEmancipation(){
     });
 }
 
-function showTaskDetail(screenHeight){
-
-    console.log(window.pageYOffset+10+"px");
+function showTaskDetail(){
 
     document.getElementById("new_task").classList.toggle("invisible");
-    document.getElementById("new_task").style.top=window.pageYOffset+10+"px";
-
-    console.log(document.getElementById("new_task").style.top.value);
-
-   
-
+    document.getElementById("new_task").style.top=window.scrollY+10+"px";
 }
 
 
