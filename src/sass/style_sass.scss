@@ -51,6 +51,8 @@ body{
             margin-right:5vw;
             justify-self: right;
             min-width: auto;
+            display: flex;
+            gap: 2vw;
 
             li{
                 cursor:pointer;
@@ -136,6 +138,39 @@ body{
         }
     }
 
+    #filter_task{ //border: 2px solid black;
+        position: absolute;
+        z-index: 10;
+        width: fit-content;
+        min-width: 0;
+        
+
+        ul{
+            list-style: none;
+            min-width: 0;
+            width: fit-content;
+            padding-inline-start:0;
+            background: $bg_color_sec;
+            padding: 0.3vh 0.5vw;
+            
+
+            li{ //border: 1px solid red;
+                min-width: 0;
+                background: $bg_Color;
+                border-radius: 3px;
+                padding: 0.2vh 0.5vw;
+                margin: 0.3vh auto;
+                
+            }
+
+            :hover{
+                background: $bg_color_sec;
+                color:$bg_color_hlight;
+            }
+        } 
+    }
+
+
     #task_view{
         margin: 1vh auto;
 
@@ -195,7 +230,6 @@ body{
     .floating_bubble{
         position: absolute;
         z-index: 10;
-        //top:340px;
         width: fit-content;
         min-width: auto;
         padding: 1vh 2vw;

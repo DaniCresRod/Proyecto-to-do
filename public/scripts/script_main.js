@@ -11,6 +11,26 @@ document.getElementById("new_task_btns__btnCancel").addEventListener("click", ()
     document.getElementById("new_task").classList.toggle("invisible");
 });
 
+//
+document.querySelector("nav ul li:nth-of-type(2)").addEventListener("click", (event)=>{
+    document.getElementById("filter_task").classList.toggle("invisible");
+    
+    document.getElementById("filter_task").style.top=event.clientY+scrollY+7+"px";
+    document.getElementById("filter_task").style.left=event.clientX+scrollX+7+"px";
+
+    
+    document.getElementById("li_todo").addEventListener("click", ()=>{
+        dataArray.sort((a,b)=>a.done-b.done);
+        refreshTaskView();
+    });
+
+    document.getElementById("li_done").addEventListener("click", ()=>{
+        dataArray.sort((a,b)=>b.done-a.done);
+        refreshTaskView();
+    });
+
+});
+
 //Array to store the tasks
 let dataArray=[];
 
@@ -95,8 +115,11 @@ function addTasksToDoc(oneTask){
 //Refresh the whole page. Resets the listeners.
 function refreshContextMenuListener(){
 
+    if (!document.getElementById("filter_task").classList.contains("invisible")){
+        document.getElementById("filter_task").classList.toggle("invisible");
+    }
     try{
-        document.getElementById("bubbleTag").remove;
+        document.getElementById("bubbleTag").remove;        
     }
     catch{}
 
@@ -261,7 +284,7 @@ function checkboxEmancipation(){
     document.querySelectorAll("#task_view input[type='checkbox']").forEach((x, index)=>{
     
         if(window.innerWidth>780){
-            console.log("cosas");
+            
             x.addEventListener("mousedown", function(event){               
            
                 event.stopPropagation();  

@@ -38,6 +38,8 @@ body nav ul {
   margin-right: 5vw;
   justify-self: right;
   min-width: auto;
+  display: flex;
+  gap: 2vw;
 }
 body nav ul li {
   cursor: pointer;
@@ -105,6 +107,31 @@ body #new_task form div button {
   min-width: auto;
   width: 50%;
   border-radius: 5px;
+}
+body #filter_task {
+  position: absolute;
+  z-index: 10;
+  width: fit-content;
+  min-width: 0;
+}
+body #filter_task ul {
+  list-style: none;
+  min-width: 0;
+  width: fit-content;
+  padding-inline-start: 0;
+  background: antiquewhite;
+  padding: 0.3vh 0.5vw;
+}
+body #filter_task ul li {
+  min-width: 0;
+  background: cadetblue;
+  border-radius: 3px;
+  padding: 0.2vh 0.5vw;
+  margin: 0.3vh auto;
+}
+body #filter_task ul :hover {
+  background: antiquewhite;
+  color: aqua;
 }
 body #task_view {
   margin: 1vh auto;
