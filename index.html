@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="public/styles/style_sass.css">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+
+    <script src="public/scripts/script_main.js" defer></script>
+
+    <title>My To-Do list</title>
+</head>
+<body>
+    <nav>
+        <h1>TODO</h1>
+        <ul>
+            <li>New</li>
+            <li>Filter</li>
+
+        </ul>
+    </nav>
+    <main>
+       <section id="new_task" class="invisible">
+        <form>
+            
+            <label for="new_task__input_title">Title:</label>
+            <input type="text" id="new_task__input_title">
+            
+            <label for="new_task__input_category">Category:</label>
+            <input type="text" id="new_task__input_category">
+        
+            <label for="new_task__input_task">Task:</label>
+            <textarea type="text" id="new_task__input_task" rows="5"></textarea>
+           
+            <div>
+                <input type="checkbox" id="new_task__task_done">
+                <label for="new_task__task_done">Done!</label>
+            </div>
+            <div id="new_task_btns">
+                <button type="button" id="new_task_btns__btnSave">Save</button>
+                <button type="reset" id="new_task_btns__btnCancel">Cancel</button>
+            </div>
+        </form>
+
+       </section>
+       <section id="filter_task" class="invisible">
+        <ul>
+            <li id="li_todo">To Do</li>
+            <li id="li_done">Done</li>
+        </ul>
+
+       </section>
+       <section id="task_view">
+        
+
+       </section>
+    </main>
+    
+</body>
+</html>
