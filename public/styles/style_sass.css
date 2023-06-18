@@ -46,7 +46,6 @@ body nav ul li {
   min-width: inherit;
 }
 body main {
-  border: 1px solid black;
   margin: 7.5vh auto 0;
   width: 85vw;
   display: flex;
@@ -156,7 +155,6 @@ body #task_view article input[type=checkbox] {
   align-self: first baseline;
 }
 body #task_view article p {
-  border: 1px solid black;
   min-width: 100px;
   width: 15vw;
   padding-left: 0.5vw;
